@@ -1420,6 +1420,10 @@ void extract_dci_ext_pkt(unsigned char *buf, int len, int data_source,
 		pr_err("diag: In %s buffer is NULL\n", __func__);
 		return;
 	}
+	if (len < (EXT_HDR_LEN + sizeof(uint8_t))) {
+		pr_err("diag: In %s invalid len: %d\n", __func__, len);
+		return;
+	}
 
 	if (len < (EXT_HDR_LEN + sizeof(uint8_t))) {
 		pr_err("diag: In %s invalid len: %d\n", __func__, len);
