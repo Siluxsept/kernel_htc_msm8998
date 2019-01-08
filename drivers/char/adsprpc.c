@@ -2829,7 +2829,7 @@ static ssize_t fastrpc_debugfs_read(struct file *filp, char __user *buffer,
 		}
 		len += scnprintf(fileinfo + len, DEBUGFS_SIZE - len,
 			"\n======%s %s %s======\n", title,
-			" LIST OF BUFS ", title);
+			" LIST OF CACHED BUFS ", title);
 		spin_lock(&fl->hlock);
 		len += scnprintf(fileinfo + len, DEBUGFS_SIZE - len,
 			"%-19s|%-19s|%-19s\n",
@@ -2837,7 +2837,7 @@ static ssize_t fastrpc_debugfs_read(struct file *filp, char __user *buffer,
 		len += scnprintf(fileinfo + len, DEBUGFS_SIZE - len,
 			"%s%s%s%s%s\n", single_line, single_line,
 			single_line, single_line, single_line);
-		hlist_for_each_entry_safe(buf, n, &fl->bufs, hn) {
+		hlist_for_each_entry_safe(buf, n, &fl->cached_bufs, hn) {
 			len += scnprintf(fileinfo + len,
 			DEBUGFS_SIZE - len,
 			"0x%-17p|0x%-17llX|%-19zu\n",
