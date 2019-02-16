@@ -3041,6 +3041,7 @@ static void batt_worker(struct work_struct *work)
 	else
 		max_iusb = get_property(htc_batt_info.usb_psy,POWER_SUPPLY_PROP_SDP_CURRENT_MAX)/1000;
 
+#if 0
 	htc_dump_chg_reg();
 	/* FIXME: htc_extension not ready */
 	BATT_EMBEDDED("ID=%d,"
@@ -3106,7 +3107,7 @@ static void batt_worker(struct work_struct *work)
 		g_htc_usb_overheat_check_state,
 		htc_batt_info.state
 		);
-
+#endif
 	if(gs_update_PSY){
 		gs_update_PSY = false;
 		power_supply_changed(htc_batt_info.batt_psy);
@@ -4326,6 +4327,7 @@ succeed:
     return rc;
 }
 
+#if 0
 void htc_dump_chg_reg(void)
 {
 	u8 chg_sts[11], chg_42, chg_61, chg_70;
@@ -4385,6 +4387,7 @@ void htc_dump_chg_reg(void)
 
 	return;
 }
+#endif
 
 void htc_notify_unknown_charger(bool is_unknown)
 {
